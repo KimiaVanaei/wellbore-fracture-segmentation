@@ -73,9 +73,9 @@ The final output for each image consists of:
 
 The same pipeline is applied to all validation images without image-specific parameter changes.
 
-| `0153.png` | `0176.png` | `0185.png` | `0197.png` |
-|:---:|:---:|:---:|:---:|
-| <img src="./outputs/0153_primary_overlay.png" width="220"> | <img src="./outputs/0176_primary_overlay.png" width="220"> | <img src="./outputs/0185_primary_overlay.png" width="220"> | <img src="./outputs/0197_primary_overlay.png" width="220"> |
+| `0153.png` | `0176.png` | `0185.png` |
+|:---:|:---:|:---:|
+| <img src="./outputs/0153_primary_overlay.png" width="220"> | <img src="./outputs/0176_primary_overlay.png" width="220"> | <img src="./outputs/0185_primary_overlay.png" width="220"> |
 
 ---
 
@@ -123,19 +123,19 @@ Sobel derivatives are used to estimate local gradient orientation.
 
 Horizontal and oblique ridge structures are favored, while nearly vertical striping receives less weight. The resulting response is smoothed before path tracking.
 
-For ridge response \(R(y,x)\), the normalized evidence is conceptually
+For ridge response $R(y,x)$, the normalized evidence is conceptually
 
 $$
 S(y,x)=
-\operatorname{clip}
+\text{clip}
 \left(
 \frac{
-R(y,x)-\operatorname{median}_y R(y,x)
+R(y,x)-\text{median}_y R(y,x)
 }{
-P_{95,y}(R(y,x))-\operatorname{median}_y R(y,x)+\epsilon
+P_{95,y}(R(y,x))-\text{median}_y R(y,x)+\epsilon
 },
 0,3
-\right).
+\right)
 $$
 
 ### 4. Full-width continuity tracking
@@ -157,7 +157,7 @@ D_s(y,x)=E(y,x)+
 D_{s'}(y-s,x-1)
 -\lambda_1|s|
 -\lambda_2|s-s'|
-\right].
+\right]
 $$
 
 After a path is extracted, a narrow band around it is suppressed before searching for another distinct candidate.
@@ -270,7 +270,7 @@ The executed notebook automatically selected the following ridge polarities and 
 | `0190.png` | Dark | 2 | 0.87, 0.92 |
 | `0197.png` | Dark | 2 | 0.96, 0.88 |
 
-The number of paths is **not hard-coded from the filename**. It is determined from the measured ridge evidence and continuity criteria.
+The number of paths is determined from the measured ridge evidence and continuity criteria.
 
 ---
 
